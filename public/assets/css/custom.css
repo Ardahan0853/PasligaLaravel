@@ -1,0 +1,56 @@
+i.fa.fa-angle-left {
+    padding-top: 40%;
+}
+i.fa.fa-angle-right {
+    padding-top: 40%;
+}
+
+.widget__content .social-links__item i {
+    font-size: 25px!important;
+    margin-right: 5px;
+    color: #fff;
+    transition: color .2s ease;
+    padding-bottom: 20px!important;
+}
+.error {
+    color: red!important;
+}
+
+.subfilter{
+    border-top: 1px solid #e4e7ed!important;
+}
+.mb10{
+	margin-bottom:10px!important;
+}
+.mt10{
+	margin-top:10px!important;
+}
+.mb20{
+	margin-bottom:20px!important;
+}
+.mt20{
+	margin-top:20px!important;
+}
+
+.newslog__item {
+    padding: 8px!important;
+}
+
+.label {
+    font-size: 10px!important;
+}
+
+.teklifkabul {
+    border: 2px solid #1892ed!important;
+	font-size: 12px;
+    padding: 2px;
+    color: #31404b;
+}
+
+.btn{padding:13px 32px!important;margin-bottom:10px!important;}
+
+.lcase{text-transform:none!important}
+
+.lblWrap{
+	white-space: pre-wrap!important;
+}
