@@ -74,17 +74,17 @@
             <div class="header__primary-inner">
                 <!-- Header Logo -->
                 <div class="header-logo">
-                    <a href="index.html"><img alt="Pasligaizmir" class="header-logo__img"
+                    <a href="{{route('izmir.index')}}"><img alt="Pasligaizmir" class="header-logo__img"
                                               src="assets/images/soccer/logo.png"
                                               srcset="/assets/images/soccer/logo@2x.png 2x"></a>
                 </div><!-- Header Logo / End --><!-- Main Navigation -->
                 <nav class="main-nav clearfix">
                     <ul class="main-nav__list">
                         <li class="active">
-                            <a href="index.html">Ana Sayfa</a>
+                            <a href="{{route('izmir.index')}}">Ana Sayfa</a>
                         </li>
                         <li class="">
-                            <a href="izmir/haberler.html">Haberler</a>
+                            <a href={{route('izmir.haberler')}}>Haberler</a>
                         </li>
                         <li class="">
                             <a href="#"><span class="stateHighlight">izmir</span> Ligi</a>
@@ -140,7 +140,7 @@
                             <a href="izmir/galeriler.html">Galeriler</a>
                         </li>
                         <li class="">
-                            <a href="izmir/puandurumu.html">Puan Durumu</a>
+                            <a href="{{route('izmir.puan')}}">Puan Durumu</a>
                         </li>
                         <li class="">
                             <a href="izmir/cezalar.html">Cezalar</a>

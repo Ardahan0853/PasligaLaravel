@@ -8,7 +8,7 @@
                         <div class="footer-col-inner">
                             <!-- Footer Logo -->
                             <div class="footer-logo footer-logo--has-txt">
-                                <a href="index.html"><img alt="Pasliga" class="footer-logo__img"
+                                <a href="{{route('izmir.index')}}"><img alt="Pasliga" class="footer-logo__img"
                                                           src="assets/images/soccer/logo.png"
                                                           srcset="/assets/images/soccer/logo.png 2x">
                                     <div class="footer-logo__heading">
@@ -111,7 +111,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="footer-copyright">
-                            <a href="index.html">Pasliga</a> 2024 &nbsp; | &nbsp; Pasliga TOPMOND EVENTS iştirakidir.
+                            <a href="{{route('izmir.index')}}">Pasliga</a> 2024 &nbsp; | &nbsp; Pasliga TOPMOND EVENTS iştirakidir.
                             Tüm Hakları Saklıdır.
                         </div>
                     </div>
