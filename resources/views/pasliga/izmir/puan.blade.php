@@ -4,10 +4,10 @@
 
 @section('content')
     <div class="site-content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Content -->
-                <div class="content col-lg-8">
+                <div class="content col-lg-9">
                     <!-- icerik -->
                     <!-- Content Text-->
 
@@ -38,36 +38,38 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    <tr>
-                                        <td class="numberLine pGreen">1</td>
-                                        <td class="team-result__vs">
-                                            <div class="team-meta">
-                                                <figure class="team-meta__logo">
-                                                    <a href="/izmir/takim/cagri-baba-fk-ege-metal-22166"><img
-                                                            src="https://www.pasliga.com//img/teams/22166_730390121757_cagri-baba-fk-ege-metal.jpg"
-                                                            alt="Çağrı Baba Fk Ege Metal"></a>
-                                                </figure>
-                                                <div class="team-meta__info">
-                                                    <h6 class="team-meta__name"><a
-                                                            href="/izmir/takim/cagri-baba-fk-ege-metal-22166">Çağrı Baba
-                                                            Fk Ege Metal</a></h6>
+                                    @if($takims)
+                                        @foreach($takims as $takim )
+                                            <td class="numberLine pGreen">{{ $takim->id }}</td>
+                                            <td class="team-result__vs">
+                                                <div class="team-meta">
+                                                    <figure class="team-meta__logo">
+                                                        <a href="/izmir/takim/cagri-baba-fk-ege-metal-22166"><img
+                                                                src="{{ asset($takim->logo) }}"
+                                                                alt="{{ $takim->name }}"></a>
+                                                    </figure>
+                                                    <div class="team-meta__info">
+                                                        <h6 class="team-meta__name"><a
+                                                                href="/izmir/takim/cagri-baba-fk-ege-metal-22166">{{ $takim->name }}</a>
+                                                        </h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-result__score">2</td>
-                                        <td class="team-result__status">2</td>
-                                        <td class="team-result__ball-possession">0</td>
-                                        <td class="team-result__shots">0</td>
-                                        <td class="team-result__fouls mobNone">15</td>
-                                        <td class="team-result__fouls mobNone">10</td>
-                                        <td class="team-result__fouls">5</td>
-                                        <td class="team-result__fouls">6</td>
-                                        <td class="team-result__game-overview mobNone">
-                                            0
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="team-result__score">{{ $takim->takimPuan->o }}</td>
+                                            <td class="team-result__score">{{$takim->takimPuan->g}}</td>
+                                            <td class="team-result__status">{{$takim->takimPuan->b}}</td>
+                                            <td class="team-result__ball-possession">{{$takim->takimPuan->m}}</td>
+                                            <td class="team-result__shots"> {{$takim->takimPuan->a}} </td>
+                                            <td class="team-result__fouls mobNone">{{$takim->takimPuan->y}}</td>
+                                            <td class="team-result__fouls mobNone">{{$takim->takimPuan->av}}4</td>
+                                            <td class="team-result__fouls">{{$takim->takimPuan->p}}</td>
 
+                                            <td class="team-result__game-overview mobNone">
+                                                {{$takim->takimPuan->bn}}
+                                            </td>
+
+                                        @endforeach
+                                    @endif
                                     <tr>
                                         <td class="numberLine pGreen">2</td>
                                         <td class="team-result__vs">
@@ -270,7 +272,7 @@
                                             0
                                         </td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <td class="numberLine pGreen">8</td>
                                         <td class="team-result__vs">
                                             <div class="team-meta">
@@ -298,7 +300,7 @@
                                             0
                                         </td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <td class="numberLine pGreen">8</td>
                                         <td class="team-result__vs">
                                             <div class="team-meta">
@@ -326,7 +328,7 @@
                                             0
                                         </td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <td class="numberLine pGreen">8</td>
                                         <td class="team-result__vs">
                                             <div class="team-meta">
@@ -354,7 +356,7 @@
                                             0
                                         </td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <td class="numberLine pGreen">8</td>
                                         <td class="team-result__vs">
                                             <div class="team-meta">
@@ -382,18 +384,115 @@
                                             0
                                         </td>
                                     </tr>
+
                                     </tbody>
                                 </table>
 
+                                @if(Auth::check() && Auth::user()->role === 'admin')
+
+                                    <form action="{{route('takim.createTakim')}}" id="takim_form" method="POST"
+                                          enctype="multipart/form-data">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <strong>Whoops!</strong> There were some problems with your
+                                                input.<br><br>
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
+                                        @csrf
+                                        <div class="row p-3">
+                                            <div class="form-group col">
+                                                <label for="name">Team Name</label>
+                                                <input type="text" id="name" name="name"
+                                                       placeholder="Takım ismi girin" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="logo">Team Logo</label>
+                                                <input type="file" accept="image/*" id="logo" name="logo"
+                                                       placeholder="Logo url" required>
+                                            </div>
+                                            <div class="form-group col ">
+                                                <label for="kadro">Kadro</label>
+                                                <input type="text" id="kadro" name="kadro"
+                                                       placeholder="Kadro girin" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="degerli_oyuncu">Degerli Oyuncu</label>
+                                                <input type="text" id="degerli_oyuncu" name="degerli_oyuncu"
+                                                       placeholder="Değerli Oyuncu" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="o">Oynanan Maçlar</label>
+                                                <input type="text" id="o" name="o"
+                                                       placeholder="Oynanan Maçlar" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="g">Galibiyet</label>
+                                                <input type="text" id="g" name="g"
+                                                       placeholder="Galibiyet" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="b">Berabere</label>
+                                                <input type="text" id="b" name="b"
+                                                       placeholder="Berabere" required>
+                                            </div>
+                                            <div class="form-group col">
+                                                <label for="m">Mağlubiyet</label>
+                                                <input type="text" id="m" name="m"
+                                                       placeholder="Mağlubiyet" required>
+                                            </div>
+
+                                            <div class="form-group col">
+                                                <label for="a">Atışlar</label>
+                                                <input type="text" id="a" name="a"
+                                                       placeholder="Atışlar" required>
+                                            </div>
+
+                                            <div class="form-group col">
+                                                <label for="y">Y</label>
+                                                <input type="text" id="y" name="y"
+                                                       placeholder="Y" required>
+                                            </div>
+
+                                            <div class="form-group col">
+                                                <label for="av">Avans</label>
+                                                <input type="text" id="av" name="av"
+                                                       placeholder="Avans" required>
+                                            </div>
+
+                                            <div class="form-group col">
+                                                <label for="p">Penaltı</label>
+                                                <input type="text" id="p" name="p"
+                                                       placeholder="Penaltı" required>
+                                            </div>
+
+                                            <div class="form-group col">
+                                                <label for="bn">Bn</label>
+                                                <input type="text" id="bn" name="bn"
+                                                       placeholder="Bn" required>
+                                            </div>
+                                            <div class="form-group col align-self-end">
+                                                <button type="submit" class="btn-primary">Create Result</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                @endif
+
                             </div>
                         </div>
+
                     </div>
 
                     <!-- End Content Text-->
                     <!-- icerik -->
 
                 </div><!-- Sidebar -->
-                <div class="sidebar col-lg-4" id="sidebar">
+                <div class="sidebar col-lg-3" id="sidebar">
                     <!-- Widget: Standings / End --><!-- Widget: Social Buttons - Condensed-->
                     <aside class="widget widget--sidebar widget-social widget-social--condensed">
                         <a class="btn-social-counter btn-social-counter--fb" href="https://www.facebook.com/passalig/"
@@ -417,7 +516,8 @@
                             <div class="btn-social-counter__icon">
                                 <i class="fab fa-instagram"></i>
                             </div>
-                            <h6 class="btn-social-counter__title">Instagram</h6><span class="btn-social-counter__count"><span
+                            <h6 class="btn-social-counter__title">Instagram</h6><span
+                                class="btn-social-counter__count"><span
                                     class="btn-social-counter__count-num"></span> Takip Et</span> <span
                                 class="btn-social-counter__add-icon"></span></a>
                     </aside><!-- Widget: Social Buttons - Condensed / End -->
@@ -426,7 +526,8 @@
                         <a href="/izmir/rezervasyon" class="btn-social-counter btn-social-counter--instagram">
                             <div class="btn-social-counter__icon"><i class="fab fa-youtube"></i></div>
                             <h6 class="btn-social-counter__title">Rezervasyon</h6><span
-                                class="btn-social-counter__count"><span class="btn-social-counter__count-num"></span> Yap</span>
+                                class="btn-social-counter__count"><span
+                                    class="btn-social-counter__count-num"></span> Yap</span>
                             <span class="btn-social-counter__add-icon"></span> </a>
                     </aside>
                     <aside class="widget widget--sidebar card card--has-table widget-leaders">

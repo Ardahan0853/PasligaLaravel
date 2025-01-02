@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginPasligaRequest;
 use App\Http\Requests\pasligaKayitRequest;
+use App\Models\takim;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -23,7 +24,11 @@ class PasligaController extends Controller
 
     public function puan()
     {
-        return view('pasliga.izmir.puan');
+        $takims = Takim::with('takimPuan')->get();
+        return view('pasliga.izmir.puan',
+            [
+                'takims' => $takims
+            ]);
     }
 
     public function kayit()

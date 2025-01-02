@@ -247,14 +247,14 @@
                                             <div class="col-sm-12">
                                                 <input type="email" id="email" name="email" class="form-control"
                                                        placeholder="Eposta adresiniz" required=""
-                                                       value="{{ 'ardahanoz@hotmail.com', old('email') }}">
+                                                       value="{{old('email') }}">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">Şifre</label>
                                             <div class="col-sm-12">
                                                 <input type="password" id="password" name="password"
-                                                       class="form-control" value="{{ '@Rdaarda1', old('password') }}"
+                                                       class="form-control"
                                                        placeholder="Şifreniz" required="">
                                             </div>
                                         </div>
