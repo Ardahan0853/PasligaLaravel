@@ -4,17 +4,51 @@
         <div class="container-fluid px-4">
             <div class="header__top-bar-inner">
                 <!-- Account Navigation -->
-                <ul class="nav-account">
+                <ul class="nav-account d-flex justify-content-center align-items-center">
+                    @auth
+                        <!-- Display Logout button if user is logged in -->
+                        <li class="nav-account__item ">
+                        </li>
 
+                        <button type="button" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">{{Auth::user()->full_name}}
+                        </button>
 
-                    <li class="nav-account__item">
-                        <a href="kayit-ol.html">Kayıt Ol</a>
-                    </li>
-                    <li class="nav-account__item">
-                        <a href="giris.html">Giriş Yap</a>
-                    </li>
+                        <div class="dropdown-menu profil-dropdown p-0">
+                            <div class="card border-0 p-0" style="width: 18rem;">
+                                <div class="card-body p-0">
+                                    <div class="row m-0 mt-3 p-0 align-items-center">
+                                        <div class="col-9 m-0 p-0 border-bottom border-separate">
+                                            <h5 class="card-title m-3">{{Auth::user()->full_name}}</h5>
+                                            <h6 class="card-subtitle m-3 text-muted m-2">{{Auth::user()->role === 'user' ? 'Standart Üye' : 'N/A'}}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="list-group m-0">
+                                        <a href="#" class="list-group-item border-0 list-group-item-action"><i
+                                                class="far fa-user mr-3"></i>Profil</a>
+                                    </div>
+                                    <div class="dropdown-divider m-0"></div>
+                                    <form action="{{ route('izmir.logout') }}" method="POST">
+                                        @csrf
+                                        <a class="list-group-item border-0 list-group-item-action text-danger"
+                                           onclick="$(this).closest('form').submit()">Çıkış
+                                            Yap</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <!-- Display Register and Login links if user is not logged in -->
+                        <li class="nav-account__item">
+                            <a href="{{ route('izmir.kayit') }}"
+                               class="{{ Route::is('izmir.kayit') ? ' text-success' : '' }}">Kayıt Ol</a>
+                        </li>
+                        <li class="nav-account__item">
+                            <a href="{{route('izmir.getLogin')}}"
+                               class="{{ Route::is('izmir.getLogin') ? ' text-success' : '' }}">Giriş Yap</a>
+                        </li>
 
-
+                    @endauth
                 </ul><!-- Account Navigation / End -->
                 <!-- Social Links -->
                 <ul class="social-links social-links--inline social-links--main-nav">
@@ -75,8 +109,8 @@
                 <!-- Header Logo -->
                 <div class="header-logo">
                     <a href="{{route('izmir.index')}}"><img alt="Pasligaizmir" class="header-logo__img"
-                                              src="assets/images/soccer/logo.png"
-                                              srcset="/assets/images/soccer/logo@2x.png 2x"></a>
+                                                            src="assets/images/soccer/logo.png"
+                                                            srcset="/assets/images/soccer/logo@2x.png 2x"></a>
                 </div><!-- Header Logo / End --><!-- Main Navigation -->
                 <nav class="main-nav clearfix">
                     <ul class="main-nav__list">

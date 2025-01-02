@@ -11,6 +11,11 @@ Route::controller(PasligaController::class)
         Route::get('', 'index')->name('index');
         Route::get('haberler', 'haberler')->name('haberler');
         Route::get('puan', 'puan')->name('puan');
+        Route::get('kayit', 'kayit')->name('kayit');
+        Route::post('register', 'register')->name('register');
+        Route::post('logout', 'logout')->name('logout');
+        Route::post('login', 'login')->name('login');
+        Route::get('login', 'getLogin')->name('getLogin');
 });
 
 Route::get('/', function () {

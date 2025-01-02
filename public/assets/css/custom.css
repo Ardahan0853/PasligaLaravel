@@ -54,3 +54,7 @@ i.fa.fa-angle-right {
 .lblWrap{
 	white-space: pre-wrap!important;
 }
+
+.btn{
+    margin-bottom: 0 !important;
+}
