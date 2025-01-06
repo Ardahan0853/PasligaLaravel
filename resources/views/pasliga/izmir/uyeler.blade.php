@@ -24,176 +24,67 @@
                                 <table class="table table-hover team-result">
                                     <thead>
                                     <tr>
-                                        <th class="team-result__date">S</th>
-                                        <th class="team-result__vs">Takım</th>
-                                        <th class="team-result__score">O</th>
-                                        <th class="team-result__status">G</th>
-                                        <th class="team-result__ball-possession">B</th>
-                                        <th class="team-result__shots">M</th>
-                                        <th class="team-result__fouls mobNone">A</th>
-                                        <th class="team-result__game-overview mobNone">Y</th>
-                                        <th class="team-result__game-overview">Av</th>
-                                        <th class="team-result__game-overview">P</th>
-                                        <th class="team-result__game-overview mobNone">Bn</th>
+                                        <th class="team-result__date">No</th>
+                                        <th class="team-result__vs">Tc No</th>
+                                        <th class="team-result__score">Tam Isim</th>
+                                        <th class="team-result__status">Email</th>
+                                        <th class="team-result__ball-possession">Telefon</th>
+                                        <th class="team-result__shots">Doğum Tarihi</th>
+                                        <th class="team-result__fouls mobNone">password</th>
+                                        <th class="team-result__game-overview mobNone">Rol</th>
+                                        <th class="team-result__game-overview">Boy</th>
+                                        <th class="team-result__game-overview">Kilo</th>
+                                        <th class="team-result__game-overview mobNone">Ayakkabı Numarası</th>
+                                        <th class="team-result__game-overview mobNone">Pozisyon</th>
+                                        <th class="team-result__game-overview mobNone">Forma Numarası</th>
+                                        <th class="team-result__game-overview mobNone">Kayıt Tarihi</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if($takims)
-                                        @foreach($takims as $takim)
+                                    @if($users)
+                                        @foreach($users as $user)
                                             <tr>
                                                 <!-- Display Takim ID -->
-                                                <td class="numberLine pGreen">{{ $takim->id }}</td>
+                                                <td class="numberLine pGreen">{{ $user->id }}</td>
 
                                                 <!-- Display Team Logo and Name -->
                                                 <td class="team-result__vs">
                                                     <div class="team-meta">
-                                                        <figure class="team-meta__logo">
-                                                            <a href="{{route('takim.edit', $takim->id)}}">
-
-                                                                <img src="{{ asset('storage/images/' . $takim->logo) }}"
-                                                                     alt="{{ $takim->name }}">
-                                                            </a>
-                                                        </figure>
                                                         <div class="team-meta__info">
                                                             <h6 class="team-meta__name">
-                                                                <a href="{{route('takim.edit', $takim->id)}}">{{ $takim->name }}</a>
+                                                                <a href="/izmir/takim/cagri-baba-fk-ege-metal-22166">{{ $user->tc_no }}</a>
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
 
                                                 <!-- Loop through related 'takimPuan' data and display the statistics -->
-                                                <td class="team-result__score">{{ $takim->takimPuan->o }}</td>
-                                                <td class="team-result__score">{{ $takim->takimPuan->g }}</td>
-                                                <td class="team-result__status">{{ $takim->takimPuan->b }}</td>
-                                                <td class="team-result__ball-possession">{{ $takim->takimPuan->m ?? 'N/A' }}</td>
-                                                <td class="team-result__shots">{{ $takim->takimPuan->a }}</td>
-                                                <td class="team-result__fouls mobNone">{{ $takim->takimPuan->y }}</td>
-                                                <td class="team-result__fouls mobNone">{{ $takim->takimPuan->av ?? 'N/A' }}</td>
-                                                <td class="team-result__fouls">{{ $takim->takimPuan->p }}</td>
-                                                <td class="team-result__game-overview mobNone">{{ $takim->takimPuan->bn }}</td>
+                                                <td class="team-result__score">{{ $user->full_name }}</td>
+                                                <td class="team-result__score">{{ $user->email }}</td>
+                                                <td class="team-result__status">{{ $user->phone }}</td>
+                                                <td class="team-result__ball-possession">{{ $user->birth_date }}</td>
+                                                <td class="team-result__shots">{{ $user->password}}</td>
+                                                <td class="team-result__fouls mobNone">{{ $user->role }}</td>
+                                                <td class="team-result__fouls mobNone">{{ $user->height }}</td>
+                                                <td class="team-result__fouls">{{ $user->weight }}</td>
+                                                <td class="team-result__game-overview mobNone">{{ $user->shoe_number }}</td>
+                                                <td class="team-result__game-overview mobNone">{{ $user->position }}</td>
+                                                <td class="team-result__game-overview mobNone">{{ $user->back_number }}</td>
+                                                <td class="team-result__game-overview mobNone">{{ date($user->created_at) }}</td>
                                             </tr>
                                         @endforeach
                                     @endif
 
 
                                     </tbody>
+
                                 </table>
+                                <div class="container-fluid d-flex">
+                                    <div class="ml-auto">
+                                            {{ $users->links() }}`
+                                    </div>
 
-                                @if(Auth::check() && Auth::user()->role === 'admin')
-
-                                    <form action="{{route('takim.createTakim')}}" id="takim_form" method="POST"
-                                          enctype="multipart/form-data">
-                                        @if ($errors->any())
-                                            <div class="alert alert-danger">
-                                                <strong>Whoops!</strong> There were some problems with your
-                                                input class="form-control" .<br><br>
-                                                <ul>
-                                                    @foreach ($errors->all() as $error)
-                                                        <li>{{ $error }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                        @csrf
-                                        <div class="container-fluid">
-                                            <div class="row p-3">
-                                                <div class="form-group col">
-                                                    <label for="name">Takım İsmi</label>
-                                                    <input class="form-control" type="text" id="name" name="name"
-                                                           class="form-control"
-                                                           placeholder="Takım ismi girin" required>
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="deger">Takım değeri</label>
-                                                    <input class="form-control" type="number" id="deger" name="deger"
-                                                           placeholder="Takım değeri girin" required>
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="kurulus_tarihi">Takım Kuruluş Tarihi</label>
-                                                    <input class="form-control" type="date" id="kurulus_tarihi"
-                                                           name="kurulus_tarihi"
-                                                           placeholder="Kurulus Tarihini Girin" required>
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="kaptan">Takım Kaptani</label>
-                                                    <input class="form-control" type="text" id="kaptan" name="kaptan"
-                                                           placeholder="Kaptanı Girin" required>
-                                                </div>
-                                            </div>
-                                            <div class="row p-3">
-                                                <div class="form-group col">
-                                                    <label for="logo">Takım Logosu</label>
-                                                    <input class="form-control" type="file" accept="image/*" id="logo"
-                                                           name="logo"
-                                                           placeholder="Logo ekleyin" required>
-                                                </div>
-
-                                                <div class="form-group col">
-                                                    <label for="o">Oynanan Maçlar</label>
-                                                    <input class="form-control" type="text" id="o" name="o"
-                                                           placeholder="Oynanan Maçlar" required>
-                                                </div>
-                                            </div>
-                                            <div class="row p-3">
-                                                <div class="form-group col">
-                                                    <label for="g">Galibiyet</label>
-                                                    <input class="form-control" type="text" id="g" name="g"
-                                                           placeholder="Galibiyet" required>
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="b">Berabere</label>
-                                                    <input class="form-control" type="text" id="b" name="b"
-                                                           placeholder="Berabere" required>
-                                                </div>
-                                                <div class="form-group col">
-                                                    <label for="m">Mağlubiyet</label>
-                                                    <input class="form-control" type="text" id="m" name="m"
-                                                           placeholder="Mağlubiyet" required>
-                                                </div>
-
-                                                <div class="form-group col">
-                                                    <label for="a">Atışlar</label>
-                                                    <input class="form-control" type="text" id="a" name="a"
-                                                           placeholder="Atışlar" required>
-                                                </div>
-                                            </div>
-                                            <div class="row p-3">
-                                                <div class="form-group col">
-                                                    <label for="y">Y</label>
-                                                    <input class="form-control" type="text" id="y" name="y"
-                                                           placeholder="Y" required>
-                                                </div>
-
-                                                <div class="form-group col">
-                                                    <label for="av">Avans</label>
-                                                    <input class="form-control" type="text" id="av" name="av"
-                                                           placeholder="Avans" required>
-                                                </div>
-
-                                                <div class="form-group col">
-                                                    <label for="p">Penaltı</label>
-                                                    <input class="form-control" type="text" id="p" name="p"
-                                                           placeholder="Penaltı" required>
-                                                </div>
-
-                                                <div class="form-group col">
-                                                    <label for="bn">Bn</label>
-                                                    <input class="form-control" type="text" id="bn" name="bn"
-                                                           placeholder="Bn" required>
-                                                </div>
-                                            </div>
-                                            <div class="row p-3">
-                                                <div class="form-group col d-flex justify-content-end">
-                                                    <button type="submit" class="btn-primary">Oluştur</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </form>
-
-                                @endif
+                                </div>
 
                             </div>
                         </div>

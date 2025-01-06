@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('takim', function (Blueprint $table) {
+        Schema::create('haberler', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('deger')->nullable();
-            $table->date('kurulus_tarihi');
-            $table->string('kaptan');
-            $table->string('logo');
-            $table->foreignId('kadro_id')->nullable();
-            $table->string('degerli_oyuncu')->nullable();
+            $table->foreignId('takim_id');
+            $table->string('image');
+            $table->string('title');
+            $table->text('content');
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('takim');
+        Schema::dropIfExists('haberler');
     }
 };

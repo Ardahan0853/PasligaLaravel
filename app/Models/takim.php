@@ -14,4 +14,13 @@ class takim extends Model
     {
        return $this->hasOne(puanDurumu::class, 'takim_id', 'id');
     }
+    public function haber()
+    {
+       return $this->hasMany(haberler::class, 'takim_id', 'id');
+    }
+
+    public function kadro()
+    {
+        return $this->hasOne(kadro::class, 'id', 'kadro_id');
+    }
 }

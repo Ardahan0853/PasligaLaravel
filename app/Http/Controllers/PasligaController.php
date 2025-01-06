@@ -31,6 +31,15 @@ class PasligaController extends Controller
             ]);
     }
 
+    public function uyeler()
+    {
+
+        $users = User::paginate(10);
+        return view('pasliga.izmir.uyeler', [
+            'users' => $users
+        ]);
+
+    }
     public function kayit()
     {
 

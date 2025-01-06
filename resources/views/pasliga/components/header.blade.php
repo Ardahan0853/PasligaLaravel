@@ -8,35 +8,36 @@
                     @auth
                         <!-- Display Logout button if user is logged in -->
                         <li class="nav-account__item ">
-                        </li>
 
-                        <button type="button" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">{{Auth::user()->full_name}}
-                        </button>
 
-                        <div class="dropdown-menu profil-dropdown p-0">
-                            <div class="card border-0 p-0" style="width: 18rem;">
-                                <div class="card-body p-0">
-                                    <div class="row m-0 mt-3 p-0 align-items-center">
-                                        <div class="col-9 m-0 p-0 border-bottom border-separate">
-                                            <h5 class="card-title m-3">{{Auth::user()->full_name}}</h5>
-                                            <h6 class="card-subtitle m-3 text-muted m-2">{{Auth::user()->role === 'user' ? 'Standart Üye' : 'N/A'}}</h6>
+                            <button type="button" class="btn btn-dark" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">{{Auth::user()->full_name}}
+                            </button>
+
+                            <div class="dropdown-menu profil-dropdown p-0">
+                                <div class="card border-0 p-0" style="width: 18rem;">
+                                    <div class="card-body p-0">
+                                        <div class="row m-0 mt-3 p-0 align-items-center">
+                                            <div class="col-9 m-0 p-0 border-bottom border-separate">
+                                                <h5 class="card-title m-3">{{Auth::user()->full_name}}</h5>
+                                                <h6 class="card-subtitle m-3 text-muted m-2">{{Auth::user()->role === 'user' ? 'Standart Üye' : 'Admin'}}</h6>
+                                            </div>
                                         </div>
+                                        <div class="list-group m-0">
+                                            <a href="#" class="list-group-item border-0 list-group-item-action"><i
+                                                    class="far fa-user mr-3"></i>Profil</a>
+                                        </div>
+                                        <div class="dropdown-divider m-0"></div>
+                                        <form action="{{ route('izmir.logout') }}" method="POST">
+                                            @csrf
+                                            <a class="list-group-item border-0 list-group-item-action text-danger"
+                                               onclick="$(this).closest('form').submit()">Çıkış
+                                                Yap</a>
+                                        </form>
                                     </div>
-                                    <div class="list-group m-0">
-                                        <a href="#" class="list-group-item border-0 list-group-item-action"><i
-                                                class="far fa-user mr-3"></i>Profil</a>
-                                    </div>
-                                    <div class="dropdown-divider m-0"></div>
-                                    <form action="{{ route('izmir.logout') }}" method="POST">
-                                        @csrf
-                                        <a class="list-group-item border-0 list-group-item-action text-danger"
-                                           onclick="$(this).closest('form').submit()">Çıkış
-                                            Yap</a>
-                                    </form>
                                 </div>
                             </div>
-                        </div>
+                        </li>
                     @else
                         <!-- Display Register and Login links if user is not logged in -->
                         <li class="nav-account__item">
@@ -44,8 +45,8 @@
                                class="{{ Route::is('izmir.kayit') ? ' text-success' : '' }}">Kayıt Ol</a>
                         </li>
                         <li class="nav-account__item">
-                            <a href="{{route('izmir.getLogin')}}"
-                               class="{{ Route::is('izmir.getLogin') ? ' text-success' : '' }}">Giriş Yap</a>
+                            <a href="{{route('login')}}"
+                               class="{{ Route::is('login') ? ' text-success' : '' }}">Giriş Yap</a>
                         </li>
 
                     @endauth
@@ -109,78 +110,78 @@
                 <!-- Header Logo -->
                 <div class="header-logo">
                     <a href="{{route('izmir.index')}}"><img alt="Pasligaizmir" class="header-logo__img"
-                                                            src="assets/images/soccer/logo.png"
+                                                            src="{{asset('assets/images/soccer/logo.png')}}"
                                                             srcset="/assets/images/soccer/logo@2x.png 2x"></a>
                 </div><!-- Header Logo / End --><!-- Main Navigation -->
                 <nav class="main-nav clearfix">
                     <ul class="main-nav__list">
-                        <li class="active">
-                            <a href="{{route('izmir.index')}}">Ana Sayfa</a>
+                        <li class="{{ Route::is('izmir.index') ? 'active' : '' }}">
+                            <a href="{{ route('izmir.index') }}">Ana Sayfa</a>
                         </li>
-                        <li class="">
-                            <a href={{route('izmir.haberler')}}>Haberler</a>
+                        <li class="{{ Route::is('izmir.haberler') ? 'active' : '' }}">
+                            <a href="{{ route('izmir.haberler') }}">Haberler</a>
                         </li>
-                        <li class="">
+                        @if(Auth::check() && Auth::user()->role === 'admin')
+                            <li class="{{ Route::is('izmir.uyeler') ? 'active' : '' }}">
+                                <a href="{{ route('izmir.uyeler') }}">Üyeler</a>
+                            </li>
+                        @endif
+                        <li class="{{ Request::is('izmir-ligi/*') ? 'active' : '' }}">
                             <a href="#"><span class="stateHighlight">izmir</span> Ligi</a>
                             <ul class="main-nav__sub">
-                                <li class="">
-                                    <a href="izmir/macprogrami.html">Maç Programı</a>
+                                <li class="{{ Route::is('izmir-ligi.golKrali') ? 'active' : '' }}">
+                                    <a href="{{ route('izmir-ligi.golKrali') }}">Gol Krallığı</a>
                                 </li>
-                                <li class="">
-                                    <a href="izmir/golkralligi.html">Gol Krallığı</a>
-                                </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/gecmismaclar.html">Geçmiş Maçlar</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/kap.html">KAP</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/halisahalar.html">Halı Sahalar</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/hakemler.html">Hakemler</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/koordinatorler.html">Koordinatörler</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="izmir/sezon-takvimi.html">Sezon Takvimi</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="">
-                            <a href="izmir/videolar/index.html">Videolar</a>
-                            <ul class="main-nav__sub">
-                                <li>
-                                    <a href="izmir/videolar/genel.html">Genel</a>
-                                </li>
-                                <li>
-                                    <a href="izmir/videolar/mac-ozetleri.html">Maç Özetleri</a>
-                                </li>
-                                <li>
-                                    <a href="izmir/videolar/basin-toplantilari.html">Basın Toplantıları</a>
-                                </li>
-                                <li>
-                                    <a href="izmir/videolar/macin-golleri.html">Maçın Golleri</a>
-                                </li>
+{{--                        <li class="{{ Request::is('izmir/videolar/*') ? 'active' : '' }}">--}}
+{{--                            <a href="izmir/videolar/index.html">Videolar</a>--}}
+{{--                            <ul class="main-nav__sub">--}}
+{{--                                <li>--}}
+{{--                                    <a href="izmir/videolar/genel.html">Genel</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="izmir/videolar/mac-ozetleri.html">Maç Özetleri</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="izmir/videolar/basin-toplantilari.html">Basın Toplantıları</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="izmir/videolar/macin-golleri.html">Maçın Golleri</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="izmir/videolar/macin-kurtarislari.html">Maçın Kurtarışları</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
 
-                                <li>
-                                    <a href="izmir/videolar/macin-kurtarislari.html">Maçın Kurtarışları</a>
-                                </li>
-                            </ul>
+                        <li class="{{ Route::is('izmir.puan') ? 'active' : '' }}">
+                            <a href="{{ route('izmir.puan') }}">Puan Durumu</a>
                         </li>
-                        <li class="">
-                            <a href="izmir/galeriler.html">Galeriler</a>
-                        </li>
-                        <li class="">
-                            <a href="{{route('izmir.puan')}}">Puan Durumu</a>
-                        </li>
-                        <li class="">
-                            <a href="izmir/cezalar.html">Cezalar</a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="izmir/cezalar.html">Cezalar</a>--}}
+{{--                        </li>--}}
                     </ul>
-                </nav><!-- Main Navigation / End -->
+                </nav>
+
             </div>
         </div>
     </div><!-- Header Primary / End -->

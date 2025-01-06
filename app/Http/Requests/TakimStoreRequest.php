@@ -23,7 +23,9 @@ class TakimStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'degerli_oyuncu' => 'required|string',
+            'deger' => 'required|numeric',
+            'kurulus_tarihi' => 'required|date',
+            'kaptan' => 'required|string',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'o' => 'required|string',
             'g' => 'required|string',

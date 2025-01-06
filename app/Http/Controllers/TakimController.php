@@ -2,13 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\haberRequest;
+use App\Http\Requests\kadroMemberRequest;
 use App\Http\Requests\TakimStoreRequest;
+use App\Models\haberler;
+use App\Models\kadro;
+use App\Models\kadroMember;
 use App\Models\puanDurumu;
 use App\Models\takim;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TakimController extends Controller
 {
     //
+
+    public function index()
+    {
+        $takims = Takim::all();
+        $puanDurumus = puanDurumu::all();
+        // Redirect to the 'puan' route with the newly created records
+        return redirect()->route('izmir.puan', [
+            'puanDurumus' => $puanDurumus,  // Corrected variable name without the '$' sign
+            'takims' => $takims,  // Corrected variable name without the '$' sign
+        ]);
+    }
+
+    public function kadroIndex(takim $takim)
+    {
+        $butunTakimlar = takim::all();
+
+        $kadro = kadro::where('takim_id', $takim->id)->first();
+        $butunKadro = kadroMember::all();
+        return view('pasliga.izmir.kadro', [
+            'butunTakimlar' => $butunTakimlar,
+            'takim' => $takim,
+            'kadro' => $kadro,
+            'butunKadro' => $butunKadro
+        ]);
+    }
     public function createTakim(TakimStoreRequest $validatedRequest)
     {
         $validated = $validatedRequest->validated();
@@ -19,38 +51,123 @@ class TakimController extends Controller
             $imageName = time() . '.' . $validatedRequest->file('logo')->getClientOriginalExtension();
 
             // Store the file in the 'public/images' directory
-            $validatedRequest->file('logo')->move('public/images', $imageName);
+            Storage::disk('public')->put('images/' . $imageName, $validatedRequest->file('logo')->get());
+            $path = $validatedRequest->file('logo')->storeAs($imageName);
+
 
             // Get the file's stored path
-            $logoPath = 'images/' . $imageName;
+
         } else {
             return redirect()->back()->withErrors(['logo' => 'File upload failed. Please try again.']);
         }
 
-        // Create the new 'Takim' record with the uploaded file's path
+        // Create the new 'Takim' record with the uploaded file's path\
+
         $takim = Takim::create([
             'name' => $validated['name'],
-            'logo' => $logoPath,  // Store the path to the file
-            'degerli_oyuncu' => $validated['degerli_oyuncu'],
-            'kadro' => null,
+            'logo' => $path,  // Store the path to the file
+            'kaptan' => $validated['kaptan'],
+            'kurulus_tarihi' => $validated['kurulus_tarihi'],
+            'deger' => $validated['deger'],
+        ]);
+        $kadro = kadro::create([
+            'takim_id' => $takim->id
         ]);
 
         $takims = Takim::all();
 
         // Remove unnecessary fields from validated data
-        unset($validated['name'], $validated['logo'], $validated['degerli_oyuncu'], $validated['kadro']);
+        unset($validated['name'], $validated['logo'], $validated['degerli_oyuncu'], $validated['kadro'],
+            $validated['kaptan'], $validated['kurulus_tarihi'], $validated['deger']);
 
         // Create the 'puanDurumu' record
-        $puanDurumu = puanDurumu::create(array_merge([
+        puanDurumu::create(array_merge([
             'takim_id' => $takim->id
         ], $validated));
         $puanDurumus = puanDurumu::all();
         // Redirect to the 'puan' route with the newly created records
-        return redirect()->route('pasliga.izmir.puan', [
+        return redirect()->route('izmir.puan', [
             'puanDurumus' => $puanDurumus,  // Corrected variable name without the '$' sign
-            'takims' => $takims,  // Corrected variable name without the '$' sign
+            'takims' => $takims,
+            'kadro' => $kadro
         ]);
 
+    }
+
+    public function kadroMemberCreate(kadroMemberRequest $request,kadro $kadro)
+    {
+
+        $validated = $request->validated();
+        $takim = takim::where('id', $kadro->takim_id)->first();
+        kadroMember::create(array_merge($validated, ['kadro_id' => $kadro->id]));
+        $butunTakimlar = takim::all();
+        $butunKadro = kadroMember::all();
+        return redirect()->route('takim.kadroIndex',[
+            'kadro' => $kadro,
+            'takim' => $takim,
+            'butunTakimlar' => $butunTakimlar,
+            'butunKadro' => $butunKadro
+        ]);
+
+
+
+    }
+
+    public function edit(takim $takim)
+    {
+        $butunTakimlar = takim::all();
+        return view('pasliga.izmir.takim-edit', [
+            'takim' => $takim,
+            'butunTakimlar' => $butunTakimlar
+        ]);
+    }
+
+    public function createHaber( haberRequest $request, takim $takim)
+    {
+
+
+
+        $validated = $request->validated();
+
+        // Validate and store the logo file
+        if ($request->hasFile('image')) {
+            // Get the file's original extension
+            $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
+
+            // Store the file in the 'public/images' directory
+            Storage::disk('public')->put('images/' . $imageName, $request->file('image')->get());
+            $path = $request->file('image')->storeAs($imageName);
+
+
+            // Get the file's stored path
+
+        } else {
+            return redirect()->back()->withErrors(['logo' => 'File upload failed. Please try again.']);
+        }
+
+        haberler::class::create([
+            'title' => $validated['title'],
+            'image' => $path,  // Store the path to the file
+            'takim_id' => $takim->id,
+            'content' => $validated['content'],
+        ]);
+        kadro::create([
+            'takim_id' => $takim->id
+        ]);
+
+        return redirect()->route('takim.edit',[
+            'takim' => $takim,
+
+        ]);
+    }
+
+    public function takimGenel(takim $takim)
+    {
+        $butunTakimlar = takim::all();
+        return view('pasliga.izmir.takim-edit', [
+            'takim' => $takim,
+            'butunTakimlar' => $butunTakimlar
+        ]);
     }
 
 }

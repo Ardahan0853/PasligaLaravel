@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('takim', function (Blueprint $table) {
+        Schema::create('kadro_members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('deger')->nullable();
-            $table->date('kurulus_tarihi');
-            $table->string('kaptan');
-            $table->string('logo');
-            $table->foreignId('kadro_id')->nullable();
-            $table->string('degerli_oyuncu')->nullable();
+            $table->string('deger');
+            $table->string('yas');
+            $table->string('mevki');
+            $table->integer('gol_sayisi');
+            $table->foreignId('kadro_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('takim');
+        Schema::dropIfExists('kadro_member');
     }
 };
