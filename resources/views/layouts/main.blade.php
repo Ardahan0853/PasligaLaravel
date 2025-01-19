@@ -454,8 +454,8 @@
 
     <div class="header-mobile" id="header-mobile">
         <div class="header-mobile__logo">
-            <a href="index.html"><img alt="Pasligaizmir" class="header-mobile__logo-img"
-                                      src="assets/images/soccer/logo.png" srcset="/assets/images/soccer/logo@2x.png 2x"></a>
+            <a href="index.html"><img alt="Pasligaizmir" class="header-mobile__logo-img rounded-circle"
+                                      src="{{asset('assets/images/soccer/logo.png')}}" srcset="/assets/images/soccer/logo@2x.png 2x"></a>
         </div>
         <div class="header-mobile__inner">
             <a class="burger-menu-icon" id="header-mobile__toggle"><span class="burger-menu-icon__line"></span></a>

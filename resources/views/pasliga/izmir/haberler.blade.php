@@ -58,7 +58,8 @@
                                                                 {{$haber->content}}
                                                             </div>
                                                             <!-- Edit and Delete Buttons -->
-                                                            <div class="posts__actions">
+                                                            @auth
+                                                                 <div class="posts__actions">
                                                                 <!-- Edit Button -->
                                                                 <a href="{{ route('izmir.haberEdit', $haber->id) }}"
                                                                    class="btn btn-warning btn-sm">
@@ -75,6 +76,8 @@
                                                                     </button>
                                                                 </form>
                                                             </div>
+                                                            @endauth
+
                                                         </div>
                                                     </div>
                                                 </div>

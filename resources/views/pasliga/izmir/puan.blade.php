@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Content -->
-                <div class="content col-lg-9">
+                <div class="content col-lg-12">
                     <!-- icerik -->
                     <!-- Content Text-->
 
@@ -34,7 +34,6 @@
                                         <th class="team-result__game-overview mobNone">Y</th>
                                         <th class="team-result__game-overview">Av</th>
                                         <th class="team-result__game-overview">P</th>
-                                        <th class="team-result__game-overview mobNone">Bn</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -62,15 +61,15 @@
                                                 </td>
 
                                                 <!-- Loop through related 'takimPuan' data and display the statistics -->
-                                                <td class="team-result__score">{{ $takim->takimPuan->o }}</td>
-                                                <td class="team-result__score">{{ $takim->takimPuan->g }}</td>
-                                                <td class="team-result__status">{{ $takim->takimPuan->b }}</td>
+
+                                                <td class="team-result__score">{{ $takim->takimPuan->o ?? 'N/A' }}</td>
+                                                <td class="team-result__score">{{ $takim->takimPuan->g ?? 'N/A' }}</td>
+                                                <td class="team-result__status">{{ $takim->takimPuan->b ?? 'N/A' }}</td>
                                                 <td class="team-result__ball-possession">{{ $takim->takimPuan->m ?? 'N/A' }}</td>
-                                                <td class="team-result__shots">{{ $takim->takimPuan->a }}</td>
-                                                <td class="team-result__fouls mobNone">{{ $takim->takimPuan->y }}</td>
+                                                <td class="team-result__shots">{{ $takim->takimPuan->a ?? 'N/A'}}</td>
+                                                <td class="team-result__fouls mobNone">{{ $takim->takimPuan->y ?? 'N/A'}}</td>
                                                 <td class="team-result__fouls mobNone">{{ $takim->takimPuan->av ?? 'N/A' }}</td>
-                                                <td class="team-result__fouls">{{ $takim->takimPuan->p }}</td>
-                                                <td class="team-result__game-overview mobNone">{{ $takim->takimPuan->bn }}</td>
+                                                <td class="team-result__fouls">{{ $takim->takimPuan->p ?? 'N/A'}}</td>
 
                                                 <!-- Edit and Delete Buttons -->
                                                 <td>
@@ -173,35 +172,31 @@
                                                 </div>
 
                                                 <div class="form-group col">
-                                                    <label for="a">Atışlar</label>
+                                                    <label for="a">Atılan Gol</label>
                                                     <input class="form-control" type="text" id="a" name="a"
                                                            placeholder="Atışlar" required>
                                                 </div>
                                             </div>
                                             <div class="row p-3">
                                                 <div class="form-group col">
-                                                    <label for="y">Y</label>
+                                                    <label for="y">Yenilen Gol</label>
                                                     <input class="form-control" type="text" id="y" name="y"
                                                            placeholder="Y" required>
                                                 </div>
 
                                                 <div class="form-group col">
-                                                    <label for="av">Avans</label>
+                                                    <label for="av">Averaj</label>
                                                     <input class="form-control" type="text" id="av" name="av"
                                                            placeholder="Avans" required>
                                                 </div>
 
                                                 <div class="form-group col">
-                                                    <label for="p">Penaltı</label>
+                                                    <label for="p">Puan</label>
                                                     <input class="form-control" type="text" id="p" name="p"
                                                            placeholder="Penaltı" required>
                                                 </div>
 
-                                                <div class="form-group col">
-                                                    <label for="bn">Bn</label>
-                                                    <input class="form-control" type="text" id="bn" name="bn"
-                                                           placeholder="Bn" required>
-                                                </div>
+
                                             </div>
                                             <div class="row p-3">
                                                 <div class="form-group col d-flex justify-content-end">
@@ -224,182 +219,7 @@
                     <!-- icerik -->
 
                 </div><!-- Sidebar -->
-                <div class="sidebar col-lg-3" id="sidebar">
-                    <!-- Widget: Standings / End --><!-- Widget: Social Buttons - Condensed-->
-                    <aside class="widget widget--sidebar widget-social widget-social--condensed">
-                        <a class="btn-social-counter btn-social-counter--fb" href="https://www.facebook.com/passalig/"
-                           target="_blank">
-                            <div class="btn-social-counter__icon">
-                                <i class="fab fa-facebook"></i>
-                            </div>
-                            <h6 class="btn-social-counter__title">Facebook</h6><span
-                                class="btn-social-counter__count"><span class="btn-social-counter__count-num"></span> Takip Et</span>
-                            <span class="btn-social-counter__add-icon"></span></a> <a
-                            class="btn-social-counter btn-social-counter--twitter"
-                            href="https://www.youtube.com/channel/UCsQ3BNXZlTHFhsEuVKB-07A" target="_blank">
-                            <div class="btn-social-counter__icon">
-                                <i class="fab fa-youtube"></i>
-                            </div>
-                            <h6 class="btn-social-counter__title">Youtube</h6><span
-                                class="btn-social-counter__count"><span class="btn-social-counter__count-num"></span> Takip Et</span>
-                            <span class="btn-social-counter__add-icon"></span></a> <a
-                            class="btn-social-counter btn-social-counter--rss" href="https://www.instagram.com/pasliga/"
-                            target="_blank">
-                            <div class="btn-social-counter__icon">
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <h6 class="btn-social-counter__title">Instagram</h6><span
-                                class="btn-social-counter__count"><span
-                                    class="btn-social-counter__count-num"></span> Takip Et</span> <span
-                                class="btn-social-counter__add-icon"></span></a>
-                    </aside><!-- Widget: Social Buttons - Condensed / End -->
 
-                    <aside class="widget card widget--sidebar widget-standings">
-                        <a href="/izmir/rezervasyon" class="btn-social-counter btn-social-counter--instagram">
-                            <div class="btn-social-counter__icon"><i class="fab fa-youtube"></i></div>
-                            <h6 class="btn-social-counter__title">Rezervasyon</h6><span
-                                class="btn-social-counter__count"><span
-                                    class="btn-social-counter__count-num"></span> Yap</span>
-                            <span class="btn-social-counter__add-icon"></span> </a>
-                    </aside>
-                    <aside class="widget widget--sidebar card card--has-table widget-leaders">
-                        <div class="widget__title card__header">
-                            <h4>Gol Krallığı</h4>
-                        </div>
-                        <div class="widget__content card__content">
-                            <!-- Leader: Points -->
-                            <div class="table-responsive">
-                                <table class="table team-leader">
-                                    <thead>
-                                    <tr>
-                                        <th class="team-leader__gp">S</th>
-                                        <th class="team-leader__type">Oyuncu</th>
-                                        <th class="team-leader__goals">G</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div><!-- Leader: Points / End -->
-                            <footer class="card__footer sponsor-card__footer"><a href="/izmir/golkralligi"
-                                                                                 class="btn btn-primary-inverse btn-lg btn-block">Tümü</a>
-                            </footer>
-                        </div>
-                    </aside>
-                    <aside class="widget widget--sidebar card card--has-table widget-leaders">
-                        <div class="widget__title card__header">
-                            <h4>Değer Listesi</h4>
-                        </div>
-                        <div class="widget__content card__content">
-                            <!-- Leader: Points -->
-                            <div class="table-responsive">
-                                <table class="table team-leader">
-                                    <thead>
-                                    <tr>
-                                        <th class="team-leader__gp">S</th>
-                                        <th class="team-leader__type">Oyuncu / Takım</th>
-                                        <th class="team-leader__goals">P</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <tr>
-                                        <td class="team-leader__gp">1</td>
-                                        <td class="team-leader__player">
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="/izmir/oyuncu/ayberk-madran-95789"><img alt=""
-                                                                                                     src="https://www.pasliga.com//img/players/default.jpg"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <a href="/izmir/oyuncu/ayberk-madran-95789"><h5
-                                                            class="team-leader__player-name">Ayberk Madran</h5></a><span
-                                                        class="team-leader__player-position">Buca Bilbao</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-leader__goals">1030 PL£</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="team-leader__gp">2</td>
-                                        <td class="team-leader__player">
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="/izmir/oyuncu/aydin-efe-bayrakceken-95638"><img alt=""
-                                                                                                             src="https://www.pasliga.com//img/players/default.jpg"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <a href="/izmir/oyuncu/aydin-efe-bayrakceken-95638"><h5
-                                                            class="team-leader__player-name">Aydın Efe Bayrakçeken</h5>
-                                                    </a><span class="team-leader__player-position">Buca Bilbao</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-leader__goals">1030 PL£</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="team-leader__gp">3</td>
-                                        <td class="team-leader__player">
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="/izmir/oyuncu/alpercan-kilinc-95734"><img alt=""
-                                                                                                       src="https://www.pasliga.com//img/players/default.jpg"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <a href="/izmir/oyuncu/alpercan-kilinc-95734"><h5
-                                                            class="team-leader__player-name">Alpercan Kılınç</h5>
-                                                    </a><span class="team-leader__player-position">Maestro Fc </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-leader__goals">1030 PL£</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="team-leader__gp">4</td>
-                                        <td class="team-leader__player">
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="/izmir/oyuncu/can-aydin-95736"><img alt=""
-                                                                                                 src="https://www.pasliga.com//img/players/default.jpg"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <a href="/izmir/oyuncu/can-aydin-95736"><h5
-                                                            class="team-leader__player-name">Can Aydın</h5></a><span
-                                                        class="team-leader__player-position">Maestro Fc </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-leader__goals">1020 PL£</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="team-leader__gp">5</td>
-                                        <td class="team-leader__player">
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="/izmir/oyuncu/egemen-izgar-95743"><img alt=""
-                                                                                                    src="https://www.pasliga.com//img/players/default.jpg"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <a href="/izmir/oyuncu/egemen-izgar-95743"><h5
-                                                            class="team-leader__player-name">Egemen Izgar</h5></a><span
-                                                        class="team-leader__player-position">Maestro Fc </span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="team-leader__goals">1020 PL£</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </div><!-- Leader: Points / End -->
-                        </div>
-                    </aside>
-                </div><!-- Sidebar / End -->
             </div>
         </div>
     </div>

@@ -35,7 +35,6 @@ class TakimStoreRequest extends FormRequest
             'y' => 'required|string',
             'av' => 'required|string',
             'p' => 'required|string',
-            'bn' => 'required|string',
         ];
     }
 

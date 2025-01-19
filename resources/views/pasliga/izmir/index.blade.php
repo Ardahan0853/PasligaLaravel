@@ -9,112 +9,112 @@
                 <!-- Content -->
                 <div class="content col-lg-8 d-flex flex-column justify-content-between">
                     <!-- Featured News -->
-                    <div class="card card--clean">
-                        <header class="card__header card__header--has-filter">
-                            <h4>Haberler</h4>
-                        </header>
-                        <div class="card__content">
-                            <!-- Slider -->
-                            <div class="slick posts posts--slider-featured posts-slider">
+{{--                    <div class="card card--clean">--}}
+{{--                        <header class="card__header card__header--has-filter">--}}
+{{--                            <h4>Haberler</h4>--}}
+{{--                        </header>--}}
+{{--                        <div class="card__content">--}}
+{{--                            <!-- Slider -->--}}
+{{--                            <div class="slick posts posts--slider-featured posts-slider">--}}
 
 
-                            </div><!-- Slider / End -->
-                        </div>
-                    </div><!-- Featured News / End -->
+{{--                            </div><!-- Slider / End -->--}}
+{{--                        </div>--}}
+{{--                    </div><!-- Featured News / End -->--}}
                     <div class="row">
 
                         <div class="col">
                             <!--kap-->
                             <aside class="widget card widget--sidebar widget-newslog">
-                                <div class="widget__title card__header">
-                                    <h4>Pasliga KAP</h4>
-                                </div>
-                                <div class="widget__content card__content">
-                                    <ul class="newslog">
+{{--                                <div class="widget__title card__header">--}}
+{{--                                    <h4>Pasliga KAP</h4>--}}
+{{--                                </div>--}}
+{{--                                <div class="widget__content card__content">--}}
+{{--                                    <ul class="newslog">--}}
 
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can
-                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma
-                                                    katıldı&nbsp;13.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can
-                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma
-                                                    katıldı&nbsp;13.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can
-                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma
-                                                    katıldı&nbsp;13.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can
-                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma
-                                                    katıldı&nbsp;13.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can--}}
+{{--                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma--}}
+{{--                                                    katıldı&nbsp;13.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can--}}
+{{--                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma--}}
+{{--                                                    katıldı&nbsp;13.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can--}}
+{{--                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma--}}
+{{--                                                    katıldı&nbsp;13.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/efe-can-ertas-84058.html">Efe Can--}}
+{{--                                                            Ertaş </a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma--}}
+{{--                                                    katıldı&nbsp;13.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
 
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/resul-benek-96794.html">Resul
-                                                            Benek</a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma
-                                                    katıldı&nbsp;12.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/resul-benek-96794.html">Resul--}}
+{{--                                                            Benek</a> / </strong> <strong>Toksöz Fc</strong><br>&nbsp;takıma--}}
+{{--                                                    katıldı&nbsp;12.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
 
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/orcun-tasdelen-96531.html">Orçun
-                                                            Taşdelen</a> / </strong> <strong></strong><br>&nbsp;kaptanın
-                                                    davetini kabul ederek takıma katıldı&nbsp;12.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/orcun-tasdelen-96531.html">Orçun--}}
+{{--                                                            Taşdelen</a> / </strong> <strong></strong><br>&nbsp;kaptanın--}}
+{{--                                                    davetini kabul ederek takıma katıldı&nbsp;12.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
 
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/tanzer-baglan-uzumcu-96833.html">Tanzer
-                                                            Bağlan Üzümcü</a> / </strong> <strong>Maestro
-                                                        Fc </strong><br>&nbsp;kaptanın davetini kabul ederek takıma
-                                                    katıldı&nbsp;11.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/tanzer-baglan-uzumcu-96833.html">Tanzer--}}
+{{--                                                            Bağlan Üzümcü</a> / </strong> <strong>Maestro--}}
+{{--                                                        Fc </strong><br>&nbsp;kaptanın davetini kabul ederek takıma--}}
+{{--                                                    katıldı&nbsp;11.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
 
-                                        <li class="newslog__item newslog__item--injury">
-                                            <div class="newslog__item-inner">
-                                                <div class="newslog__content">
-                                                    <strong><a href="izmir/oyuncu/goktug-gaffaroglu-84031.html">Göktuğ
-                                                            Gaffaroğlu</a> / </strong> <strong>Genç
-                                                        Çamlıkulespor</strong><br>&nbsp;takıma katıldı&nbsp;9.12.2024
-                                                </div>
-                                            </div>
-                                        </li>
+{{--                                        <li class="newslog__item newslog__item--injury">--}}
+{{--                                            <div class="newslog__item-inner">--}}
+{{--                                                <div class="newslog__content">--}}
+{{--                                                    <strong><a href="izmir/oyuncu/goktug-gaffaroglu-84031.html">Göktuğ--}}
+{{--                                                            Gaffaroğlu</a> / </strong> <strong>Genç--}}
+{{--                                                        Çamlıkulespor</strong><br>&nbsp;takıma katıldı&nbsp;9.12.2024--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
 
-                                    </ul>
-                                </div>
-                                <footer class="card__footer sponsor-card__footer pad0"><a href="izmir/kap.html"
-                                                                                          class="btn btn-primary-inverse btn-lg btn-block mb0">Tümü</a>
-                                </footer>
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                                <footer class="card__footer sponsor-card__footer pad0"><a href="izmir/kap.html"--}}
+{{--                                                                                          class="btn btn-primary-inverse btn-lg btn-block mb0">Tümü</a>--}}
+{{--                                </footer>--}}
                             </aside>
                             <!--kap-->
                         </div>
@@ -473,20 +473,8 @@
 
                                         <tr>
                                             <td class="team-leader__type">{{$member->id}}</td>
-                                            <div class="team-leader__player-info">
-                                                <figure class="team-leader__player-img team-leader__player-img--sm">
-                                                    <a href="{{route('takim.edit', ['takim' => $member->kadro->takim])}}"><img
-                                                            alt=""
-                                                            src="{{asset('storage/public/' . $member->kadro->takim->logo)}}"></a>
-                                                </figure>
-                                                <div class="team-leader__player-inner">
-                                                    <h5 class="team-leader__player-name"><a
-                                                            href="{{route('takim.edit', ['takim' => $member->kadro->takim])}}">{{$member->kadro->takim->name}}</a>
-                                                    </h5>
-                                                </div>
-                                            </div>
-                                            <td class="team-leader__goals">{{$member->kadro->takim->name}}</td>
                                             <td class="team-leader__gp">{{$member->name}}</td>
+                                            <td class="team-leader__goals">{{$member->kadro->takim->name}}</td>
                                             <td class="team-leader__gp">{{$member->mevki}}</td>
                                             <td class="team-leader__avg">{{$member->gol_sayisi}}</td>
                                         </tr>

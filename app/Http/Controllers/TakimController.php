@@ -188,7 +188,9 @@ class TakimController extends Controller
 
     public function destroy(takim $takim)
     {
-        $takim->kadro->oyuncu->delete();
+        if($takim->kadro->oyuncu){
+            $takim->kadro->oyuncu->delete();
+        }
         $takim->kadro->delete();
         $takim->delete();
         return redirect()->route('takim.index');
