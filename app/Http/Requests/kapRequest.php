@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class kadroMemberRequest extends FormRequest
+class kapRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,12 +21,11 @@ class kadroMemberRequest extends FormRequest
      */
     public function rules(): array
     {
-            return [
-                'name' => 'required|string|max:255',
-                'deger' => 'required|integer',
-                'yas' => 'required|integer|min:0',
-                'gol_sayisi' => 'required|integer|min:0',
-                'mevki' => 'required|string|max:255',
-            ];
+        return [
+            'tarih' => 'required|string',
+            'oyuncu' => 'required|string',
+            'takim' => 'required|string',
+            'durum' => 'required|string',
+        ];
     }
 }

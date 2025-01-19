@@ -452,7 +452,7 @@
     <!--<div class="site-overlay"></div>-->
 
 
-    <div class="header-mobile clearfix" id="header-mobile">
+    <div class="header-mobile" id="header-mobile">
         <div class="header-mobile__logo">
             <a href="index.html"><img alt="Pasligaizmir" class="header-mobile__logo-img"
                                       src="assets/images/soccer/logo.png" srcset="/assets/images/soccer/logo@2x.png 2x"></a>
@@ -476,7 +476,15 @@
 <script src="{{ asset('assets/js/initnew.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
 
-</body>
 
+</body>
+<script>
+    document.querySelector('#header-mobile__toggle').addEventListener('click', function () {
+        document.querySelector('.clearfix').classList.toggle('site-wrapper--has-overlay');
+    });
+    document.querySelector('.main-nav__back').addEventListener('click', function () {
+        document.querySelector('.clearfix').classList.remove('site-wrapper--has-overlay');
+    });
+</script>
 <!-- Mirrored from pasliga.com/izmir by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Dec 2024 10:39:21 GMT -->
 </html>

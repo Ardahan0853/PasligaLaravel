@@ -2,7 +2,7 @@
             <div class="container-fluid">
                 <a class="content-filter__toggle" href="#"></a>
                 <ul class="content-filter__list">
-                    <li class="content-filter__item {{Route::is('takim.takimGenel') ? 'content-filter__item--active' : ''}}">
+                    <li class="content-filter__item {{Route::is('takim.takimGenel') || Route::is('takim.edit') ? 'content-filter__item--active' : ''}}">
                         <a class="content-filter__link " href="{{route('takim.takimGenel', $takim)}}"><small>Genel</small> Gösterim</a>
                     </li>
                     <li class="content-filter__item {{Route::is('takim.kadroIndex') ? 'content-filter__item--active' : ''}}">

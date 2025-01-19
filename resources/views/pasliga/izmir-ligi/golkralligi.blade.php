@@ -9,17 +9,6 @@
         <div class="site-overlay"></div>
 
 
-        <div class="header-mobile clearfix" id="header-mobile">
-            <div class="header-mobile__logo">
-                <a href="../istanbul.html"><img alt="Pasligaistanbul" class="header-mobile__logo-img"
-                                                src="../assets/images/soccer/logo.png"
-                                                srcset="/assets/images/soccer/logo@2x.png 2x"></a>
-            </div>
-            <div class="header-mobile__inner">
-                <a class="burger-menu-icon" id="header-mobile__toggle"><span class="burger-menu-icon__line"></span></a>
-                <span class="header-mobile__search-icon" id="header-mobile__search-icon"></span>
-            </div>
-        </div><!-- Header Desktop -->
         <div class="page-heading">
             <div class="container">
                 <div class="row">
@@ -73,16 +62,27 @@
                                         </thead>
                                         <tbody>
 
-                                        @foreach($takims as $takim)
-                                            @if($takim->kadro)
-                                                <tr>
-                                                    <td class="team-leader__type">{{$takim->id}}</td>
-                                                    <td class="team-leader__goals">{{$takim->kadro->oyuncu->name}}</td>
-                                                    <td class="team-leader__gp">{{$takim->name}}</td>
-                                                    <td class="team-leader__gp">{{$takim->kadro->oyuncu->mevki}}</td>
-                                                    <td class="team-leader__avg">{{$takim->takimPuan->g}}</td>
-                                                </tr>
-                                            @endif
+                                        @foreach($allMembers as $member)
+
+                                            <tr>
+                                                <td class="team-leader__type">{{$member->id}}</td>
+                                                <div class="team-leader__player-info">
+                                                    <figure class="team-leader__player-img team-leader__player-img--sm">
+                                                        <a href="{{route('takim.edit', ['takim' => $member->kadro->takim])}}"><img alt=""
+                                                                                                        src="{{asset('storage/public/' . $member->kadro->takim->logo)}}"></a>
+                                                    </figure>
+                                                    <div class="team-leader__player-inner">
+                                                        <h5 class="team-leader__player-name"><a
+                                                                href="{{route('takim.edit', ['takim' => $member->kadro->takim])}}">{{$member->kadro->takim->name}}</a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <td class="team-leader__goals">{{$member->kadro->takim->name}}</td>
+                                                <td class="team-leader__gp">{{$member->name}}</td>
+                                                <td class="team-leader__gp">{{$member->mevki}}</td>
+                                                <td class="team-leader__avg">{{$member->gol_sayisi}}</td>
+                                            </tr>
+
                                         @endforeach
 
 

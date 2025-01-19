@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-       @include('pasliga.components.puan-header')
+        @include('pasliga.components.puan-header')
 
         <!-- Content -->
         <div class="site-content">
@@ -106,6 +106,24 @@
                                                     <span class="team-leader__player-position">{{$oyuncu->mevki}}</span>
                                                 </td>
                                             </tr>
+                                            <td>
+                                                <!-- Edit Button -->
+                                                <a href="{{ route('takim.editOyuncu', ['takim' => $takim, 'oyuncu' => $oyuncu->id]) }}"
+                                                   class="btn btn-sm btn-primary">
+                                                    Edit
+                                                </a>
+
+                                                <!-- Delete Button -->
+                                                <form action="{{ route('takim.destroyOyuncu', $oyuncu->id) }}"
+                                                      method="POST" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                            onclick="return confirm('Are you sure you want to delete this player?');">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            </td>
                                         @endforeach
 
 
@@ -131,9 +149,18 @@
                                                   enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="name">Oyuncu Ismi</label>
-                                                    <input type="text" name="name" class="form-control" id="name"
-                                                           placeholder="Oyuncu"/>
+                                                    <label class="control-label col-sm-2">Oyuncu</label>
+                                                    <div class="col-sm-12">
+                                                        <select id="name" name="name" class="form-control"
+                                                                required="">
+                                                            <option value="">Seçiniz</option>
+                                                            @foreach($users as $user)
+
+                                                                <option
+                                                                    value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="deger">Değer</label>
@@ -301,7 +328,22 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
+                                        @foreach($golKrali as $kral)
+                                            <tr>
+                                                <td class="team-leader__gp">{{ $kral->id }}</td>
+                                                <td class="team-leader__player">
+                                                    <div class="team-leader__player-info">
+                                                        <div class="team-leader__player-inner">
+                                                            <a href=""><h5
+                                                                    class="team-leader__player-name">{{ $kral->name }}</h5>
+                                                            </a><span
+                                                                class="team-leader__player-position">{{ $kral->kadro->takim->name }}</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="team-leader__goals">{{ $kral->gol_sayisi }}</td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div><!-- Leader: Points / End -->
@@ -328,20 +370,27 @@
                                         <tbody>
                                         @if($takim->kadro)
                                             @foreach($takim->kadro->oyuncu as $oyuncu)
-
                                                 <tr>
+                                                    <!-- Display Oyuncu ID -->
                                                     <td class="team-leader__gp">{{ $oyuncu->id }}</td>
+
+                                                    <!-- Display Oyuncu Name and Takim Name -->
                                                     <td class="team-leader__player">
                                                         <div class="team-leader__player-info">
                                                             <div class="team-leader__player-inner">
-                                                                <a href=""><h5
-                                                                        class="team-leader__player-name">{{ $oyuncu->name }}</h5>
-                                                                </a><span
+                                                                <a href="">
+                                                                    <h5 class="team-leader__player-name">{{ $oyuncu->name }}</h5>
+                                                                </a>
+                                                                <span
                                                                     class="team-leader__player-position">{{ $takim->name }}</span>
                                                             </div>
                                                         </div>
                                                     </td>
+
+                                                    <!-- Display Oyuncu Deger -->
                                                     <td class="team-leader__goals">{{ $oyuncu->deger }} PL£</td>
+
+                                                    <!-- Edit and Delete Buttons -->
                                                 </tr>
                                             @endforeach
                                         @endif

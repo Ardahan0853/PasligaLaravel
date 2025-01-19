@@ -191,17 +191,6 @@
             <div class="site-overlay"></div>
 
 
-            <div class="header-mobile clearfix" id="header-mobile">
-                <div class="header-mobile__logo">
-                    <a href="izmir.html"><img alt="Pasligaizmir" class="header-mobile__logo-img"
-                                              src="assets/images/soccer/logo.png"
-                                              srcset="/assets/images/soccer/logo@2x.png 2x"></a>
-                </div>
-                <div class="header-mobile__inner">
-                    <a class="burger-menu-icon" id="header-mobile__toggle"><span class="burger-menu-icon__line"></span></a>
-                    <span class="header-mobile__search-icon" id="header-mobile__search-icon"></span>
-                </div>
-            </div><!-- Header Desktop -->
             <div class="page-heading">
                 <div class="container">
                     <div class="row">

@@ -48,15 +48,14 @@
                                                 <td class="team-result__vs">
                                                     <div class="team-meta">
                                                         <figure class="team-meta__logo">
-                                                            <a href="{{route('takim.edit', $takim->id)}}">
-
+                                                            <a href="{{ route('takim.edit', $takim->id) }}">
                                                                 <img src="{{ asset('storage/images/' . $takim->logo) }}"
                                                                      alt="{{ $takim->name }}">
                                                             </a>
                                                         </figure>
                                                         <div class="team-meta__info">
                                                             <h6 class="team-meta__name">
-                                                                <a href="{{route('takim.edit', $takim->id)}}">{{ $takim->name }}</a>
+                                                                <a href="{{ route('takim.edit', $takim->id) }}">{{ $takim->name }}</a>
                                                             </h6>
                                                         </div>
                                                     </div>
@@ -72,8 +71,29 @@
                                                 <td class="team-result__fouls mobNone">{{ $takim->takimPuan->av ?? 'N/A' }}</td>
                                                 <td class="team-result__fouls">{{ $takim->takimPuan->p }}</td>
                                                 <td class="team-result__game-overview mobNone">{{ $takim->takimPuan->bn }}</td>
+
+                                                <!-- Edit and Delete Buttons -->
+                                                <td>
+                                                    <!-- Edit Button -->
+                                                    <a href="{{ route('takim.edit', $takim->id) }}"
+                                                       class="btn btn-sm btn-primary">
+                                                        Edit
+                                                    </a>
+
+                                                    <!-- Delete Button -->
+                                                    <form action="{{ route('takim.destroy', $takim->id) }}"
+                                                          method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                                onclick="return confirm('Are you sure you want to delete this team?');">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
+
                                     @endif
 
 

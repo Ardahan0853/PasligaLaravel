@@ -34,12 +34,15 @@
                                                onclick="$(this).closest('form').submit()">Çıkış
                                                 Yap</a>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
                         </li>
+
                     @else
                         <!-- Display Register and Login links if user is not logged in -->
+
                         <li class="nav-account__item">
                             <a href="{{ route('izmir.kayit') }}"
                                class="{{ Route::is('izmir.kayit') ? ' text-success' : '' }}">Kayıt Ol</a>
@@ -48,7 +51,6 @@
                             <a href="{{route('login')}}"
                                class="{{ Route::is('login') ? ' text-success' : '' }}">Giriş Yap</a>
                         </li>
-
                     @endauth
                 </ul><!-- Account Navigation / End -->
                 <!-- Social Links -->
@@ -84,24 +86,7 @@
                     <button class="header-mobile__search-submit" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div><!-- Header Search Form / End -->
-            <ul class="info-block info-block--header">
-                <li class="info-block__item info-block__item--contact-primary">
-                    <a href="izmir/canlisonuclar.html" class="btn btn-danger btn-sm canlisonuc">Canlı Sonuçlar</a>
-                </li>
-                <li class="info-block__item info-block__item--contact-secondary">
-                    <svg class="df-icon df-icon--whistle" role="img">
-                        <use xlink:href="assets/images/icons-soccer.svg#whistle"></use>
-                    </svg>
-                    <h6 class="info-block__heading">Call Center</h6><a class="info-block__link" href="tel:05522572772">05522572772</a>
-                </li>
-                <li class="info-block__item info-block__item--contact-secondary">
-                    <svg class="df-icon df-icon--soccer-ball" role="img">
-                        <use xlink:href="assets/images/icons-soccer.svg#soccer-ball"></use>
-                    </svg>
-                    <h6 class="info-block__heading">Eposta</h6><a class="info-block__link lcase"
-                                                                  href="mailto:info@pasliga.com">info@pasliga.com</a>
-                </li>
-            </ul>
+
         </div>
     </div><!-- Header Secondary / End --><!-- Header Primary -->
     <div class="header__primary">
@@ -113,8 +98,11 @@
                                                             src="{{asset('assets/images/soccer/logo.png')}}"
                                                             srcset="/assets/images/soccer/logo@2x.png 2x"></a>
                 </div><!-- Header Logo / End --><!-- Main Navigation -->
+
                 <nav class="main-nav clearfix">
                     <ul class="main-nav__list">
+                        <li class="main-nav__back m">
+                        </li>
                         <li class="{{ Route::is('izmir.index') ? 'active' : '' }}">
                             <a href="{{ route('izmir.index') }}">Ana Sayfa</a>
                         </li>
@@ -133,10 +121,10 @@
                                     <a href="{{ route('izmir-ligi.golKrali') }}">Gol Krallığı</a>
                                 </li>
                                 <li>
-                                    <a href="izmir/gecmismaclar.html">Geçmiş Maçlar</a>
+                                    <a href="{{route('izmir-ligi.gecmisMaclar')}}">Geçmiş Maçlar</a>
                                 </li>
                                 <li>
-                                    <a href="izmir/kap.html">KAP</a>
+                                    <a href="{{route('izmir-ligi.kap')}}">KAP</a>
                                 </li>
                                 <li>
                                     <a href="izmir/halisahalar.html">Halı Sahalar</a>
@@ -150,38 +138,47 @@
                                 <li>
                                     <a href="izmir/sezon-takvimi.html">Sezon Takvimi</a>
                                 </li>
+
                             </ul>
                         </li>
-{{--                        <li class="{{ Request::is('izmir/videolar/*') ? 'active' : '' }}">--}}
-{{--                            <a href="izmir/videolar/index.html">Videolar</a>--}}
-{{--                            <ul class="main-nav__sub">--}}
-{{--                                <li>--}}
-{{--                                    <a href="izmir/videolar/genel.html">Genel</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="izmir/videolar/mac-ozetleri.html">Maç Özetleri</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="izmir/videolar/basin-toplantilari.html">Basın Toplantıları</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="izmir/videolar/macin-golleri.html">Maçın Golleri</a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="izmir/videolar/macin-kurtarislari.html">Maçın Kurtarışları</a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
+                        {{--                        <li class="{{ Request::is('izmir/videolar/*') ? 'active' : '' }}">--}}
+                        {{--                            <a href="izmir/videolar/index.html">Videolar</a>--}}
+                        {{--                            <ul class="main-nav__sub">--}}
+                        {{--                                <li>--}}
+                        {{--                                    <a href="izmir/videolar/genel.html">Genel</a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li>--}}
+                        {{--                                    <a href="izmir/videolar/mac-ozetleri.html">Maç Özetleri</a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li>--}}
+                        {{--                                    <a href="izmir/videolar/basin-toplantilari.html">Basın Toplantıları</a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li>--}}
+                        {{--                                    <a href="izmir/videolar/macin-golleri.html">Maçın Golleri</a>--}}
+                        {{--                                </li>--}}
+                        {{--                                <li>--}}
+                        {{--                                    <a href="izmir/videolar/macin-kurtarislari.html">Maçın Kurtarışları</a>--}}
+                        {{--                                </li>--}}
+                        {{--                            </ul>--}}
+                        {{--                        </li>--}}
 
                         <li class="{{ Route::is('izmir.puan') ? 'active' : '' }}">
                             <a href="{{ route('izmir.puan') }}">Puan Durumu</a>
                         </li>
-{{--                        <li>--}}
-{{--                            <a href="izmir/cezalar.html">Cezalar</a>--}}
-{{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a href="izmir/cezalar.html">Cezalar</a>--}}
+                        {{--                        </li>--}}
+                        <li class="nav-account__item login-mobile">
+                            <a href="{{ route('izmir.kayit') }}"
+                               class="{{ Route::is('izmir.kayit') ? ' text-success' : '' }}">Kayıt Ol</a>
+                        </li>
+                        <li class="nav-account__item login-mobile">
+                            <a href="{{route('login')}}"
+                               class="{{ Route::is('login') ? ' text-success' : '' }}">Giriş Yap</a>
+                        </li>
+
                     </ul>
                 </nav>
-
             </div>
         </div>
     </div><!-- Header Primary / End -->

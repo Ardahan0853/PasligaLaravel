@@ -22,7 +22,7 @@
 	/* ----------------------------------------------------------- */
 	var $template_var = $('body').data('template');
 	var $color_primary = '#ffdc11';
-	var $main_nav     = $('.main-nav');
+
 	var $circular_bar = $('.circular__bar');
 	var $gmap         = $('.gm-map');
 	var $mp_single    = $('.mp_single-img');
@@ -126,7 +126,7 @@
 				var $info_nav_li = $('.info-block--header > li');
 				var $info_nav_li_onclick = $('.js-info-block__item--onclick');
 				var $wrapper     = $('.site-wrapper');
-				var $nav_list    = $('.main-nav__list');
+
 				var $nav_list_li = $('.main-nav__list > li');
 				var $toggle_btn  = $('#header-mobile__toggle');
 				var $pushy_btn   = $('.pushy-panel__toggle');
@@ -149,7 +149,7 @@
 				}
 
 				// Clone Header Logo to Mobile Menu
-				var $logo_mobile = $('.header-mobile__logo').clone();
+
 				$nav_list.prepend($logo_mobile);
 				$logo_mobile.prepend('<span class="main-nav__back"></span>');
 

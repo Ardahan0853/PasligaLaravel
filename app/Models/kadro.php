@@ -12,7 +12,7 @@ class kadro extends Model
 
     public function takim()
     {
-       return $this->belongsTo(takim::class, 'kadro_id', 'id');
+       return $this->belongsTo(takim::class, 'takim_id', 'id');
     }
 
     public function oyuncu()

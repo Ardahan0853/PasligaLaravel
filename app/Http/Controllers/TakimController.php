@@ -10,7 +10,7 @@ use App\Models\kadro;
 use App\Models\kadroMember;
 use App\Models\puanDurumu;
 use App\Models\takim;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class TakimController extends Controller
@@ -33,14 +33,20 @@ class TakimController extends Controller
         $butunTakimlar = takim::all();
 
         $kadro = kadro::where('takim_id', $takim->id)->first();
-        $butunKadro = kadroMember::all();
+
+        $butunKadro = kadroMember::where('kadro_id', $kadro->id)->get();
+        $golKrali = kadroMember::orderBy('gol_sayisi', 'desc')->get();
+        $users = User::all();
         return view('pasliga.izmir.kadro', [
             'butunTakimlar' => $butunTakimlar,
             'takim' => $takim,
             'kadro' => $kadro,
-            'butunKadro' => $butunKadro
+            'users' => $users,
+            'butunKadro' => $butunKadro,
+            'golKrali' => $golKrali
         ]);
     }
+
     public function createTakim(TakimStoreRequest $validatedRequest)
     {
         $validated = $validatedRequest->validated();
@@ -73,6 +79,9 @@ class TakimController extends Controller
         $kadro = kadro::create([
             'takim_id' => $takim->id
         ]);
+        $takim->update([
+            'kadro_id' => $kadro->id
+        ]);
 
         $takims = Takim::all();
 
@@ -94,15 +103,16 @@ class TakimController extends Controller
 
     }
 
-    public function kadroMemberCreate(kadroMemberRequest $request,kadro $kadro)
+    public function kadroMemberCreate(kadroMemberRequest $request, kadro $kadro)
     {
 
         $validated = $request->validated();
+        $validated['name'] = User::where('id', $validated['name'])->first()->full_name;
         $takim = takim::where('id', $kadro->takim_id)->first();
         kadroMember::create(array_merge($validated, ['kadro_id' => $kadro->id]));
         $butunTakimlar = takim::all();
         $butunKadro = kadroMember::all();
-        return redirect()->route('takim.kadroIndex',[
+        return redirect()->route('takim.kadroIndex', [
             'kadro' => $kadro,
             'takim' => $takim,
             'butunTakimlar' => $butunTakimlar,
@@ -110,21 +120,23 @@ class TakimController extends Controller
         ]);
 
 
-
     }
 
     public function edit(takim $takim)
     {
         $butunTakimlar = takim::all();
+        $allMembers = kadroMember::all();
+        $memberValue = kadroMember::orderBy('deger', 'desc')->get();
         return view('pasliga.izmir.takim-edit', [
             'takim' => $takim,
-            'butunTakimlar' => $butunTakimlar
+            'butunTakimlar' => $butunTakimlar,
+            'allMembers' => $allMembers,
+            'memberValue' => $memberValue
         ]);
     }
 
-    public function createHaber( haberRequest $request, takim $takim)
+    public function createHaber(haberRequest $request, takim $takim)
     {
-
 
 
         $validated = $request->validated();
@@ -155,19 +167,53 @@ class TakimController extends Controller
             'takim_id' => $takim->id
         ]);
 
-        return redirect()->route('takim.edit',[
-            'takim' => $takim,
 
+        return redirect()->route('takim.edit', [
+            'takim' => $takim
         ]);
     }
 
     public function takimGenel(takim $takim)
     {
         $butunTakimlar = takim::all();
+        $allMembers = kadroMember::all();
+        $memberValue = kadroMember::orderBy('deger', 'desc')->get();
         return view('pasliga.izmir.takim-edit', [
             'takim' => $takim,
-            'butunTakimlar' => $butunTakimlar
+            'butunTakimlar' => $butunTakimlar,
+            'allMembers' => $allMembers,
+            'memberValue' => $memberValue
         ]);
     }
 
+    public function destroy(takim $takim)
+    {
+        $takim->kadro->oyuncu->delete();
+        $takim->kadro->delete();
+        $takim->delete();
+        return redirect()->route('takim.index');
+    }
+
+    public function editOyuncu(takim $takim, kadroMember $oyuncu,)
+    {
+        $users = User::all();
+       return view('pasliga.izmir.oyuncu', [
+            'oyuncu' => $oyuncu,
+            'takim' => $takim,
+            'users' => $users
+        ]);
+    }
+
+    public function updateOyuncu(takim $takim, kadroMember $oyuncu, kadroMemberRequest $request )
+    {
+        $validated = $request->validated();
+
+         $validated['name'] = User::where('id', $validated['name'])->first()->full_name;
+
+        $oyuncu->update($validated);
+
+        return redirect()->route('takim.kadroIndex', [
+            'takim' => $takim
+        ]);
+    }
 }

@@ -33,60 +33,61 @@
                                     <!-- Posts List -->
 
                                     <div class="posts posts--cards posts--cards-thumb-left post-list">
-
+                                        @foreach ($errors->all() as $error)
+                                            <div class="alert alert-danger">{{ $error }}</div>
+                                        @endforeach
                                         <div class="post-list__item">
-                                            @foreach($haberler as $haber)
-                                                <div
-                                                    class="posts__item posts__item--card posts__item--category-1 card card--block">
-                                                    <figure class="posts__thumb">
-                                                        <a href="../haber/{{$haber->slug}}.html">
-                                                            <img alt=""
-                                                                 src="{{asset('storage/images/' . $haber->image)}}">
-                                                        </a>
-                                                    </figure>
-                                                    <div class="posts__inner">
-                                                        <div class="card__content">
-                                                            <!--<div class="posts__cat">
-                                                                <span class="label posts__cat-label">The Team</span>
-                                                            </div>-->
-                                                            <h6 class="posts__title">
-                                                                <a href="../haber/{{$haber->slug}}.html">{{$haber->title}}</a>
-                                                            </h6>
-                                                            <time class="posts__date"
-                                                                  datetime="{{$haber->tarih}}">{{$haber->tarih}}</time>
-                                                            <div class="posts__excerpt">
-                                                                {{$haber->content}}
-                                                            </div>
-                                                            <!-- Edit and Delete Buttons -->
-                                                            <div class="posts__actions">
-                                                                <!-- Edit Button -->
-                                                                <a href="{{ route('izmir.haberEdit', $haber->id) }}"
-                                                                   class="btn btn-warning btn-sm">
-                                                                    Edit
-                                                                </a>
-                                                                <!-- Delete Button -->
-                                                                <form action="{{ route('izmir.haberDestroy', $haber->id) }}"
-                                                                      method="POST" style="display: inline;">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                                            onclick="return confirm('Are you sure you want to delete this item?');">
-                                                                        Delete
-                                                                    </button>
-                                                                </form>
-                                                            </div>
+                                            <div
+                                                class="posts__item posts__item--card posts__item--category-1 card card--block">
+                                                <figure class="posts__thumb">
+                                                    <a href="../haber/{{$haber->slug}}.html">
+                                                        <img alt=""
+                                                             src="{{asset('storage/images/' . $haber->image)}}">
+                                                    </a>
+                                                </figure>
+                                                <div class="posts__inner">
+                                                    <div class="card__content">
+                                                        <!--<div class="posts__cat">
+                                                            <span class="label posts__cat-label">The Team</span>
+                                                        </div>-->
+                                                        <h6 class="posts__title">
+                                                            <a href="../haber/{{$haber->slug}}.html">{{$haber->title}}</a>
+                                                        </h6>
+                                                        <time class="posts__date"
+                                                              datetime="{{ $haber->tarih }}">{{ $haber->tarih }}</time>
+                                                        <div class="posts__excerpt">
+                                                            {{$haber->content}}
+                                                        </div>
+                                                        <!-- Edit and Delete Buttons -->
+                                                        <div class="posts__actions">
+                                                            <!-- Edit Button -->
+                                                            <a href="{{ route('izmir.haberEdit', $haber->id) }}"
+                                                               class="btn btn-warning btn-sm">
+                                                                Edit
+                                                            </a>
+                                                            <!-- Delete Button -->
+                                                            <form action="{{ route('izmir.haberDestroy', $haber->id) }}"
+                                                                  method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                                        onclick="return confirm('Are you sure you want to delete this item?');">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @endforeach
+                                            </div>
 
                                         </div>
 
                                         @if(Auth::check() && Auth::user()->role === "admin")
                                             <div class="post-list__item m-3">
 
-                                                <form action="{{route('izmir.createHaber')}}" method="POST"
+                                                <form action="{{route('izmir.haberUpdate', $haber)}}" method="POST"
                                                       enctype="multipart/form-data">
+                                                    @method('PATCH')
                                                     @csrf
                                                     <div class="form-group">
                                                         <label class="control-label col-sm-2">Takım</label>
@@ -94,12 +95,13 @@
                                                             <select id="takim" name="takim"
                                                                     class="form-control"
                                                                     required=""
-                                                                    value="{{ old('takim') }}">
+                                                                    value="{{ old('takim') }}"
+                                                            >
                                                                 <option value="">Seçiniz</option>
 
                                                                 @foreach($allTeams as $team)
                                                                     <option
-                                                                        value="{{$team->name}}">{{$team->name}}</option>
+                                                                        value="{{$team->name}}" {{$team->id === $haber->takim_id ? 'selected' : ''}}>{{$team->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -120,12 +122,14 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="title">Başlık</label>
-                                                        <input type="text" name="title" class="form-control" id="title"
+                                                        <input type="text" value="{{$haber->title}}" name="title"
+                                                               class="form-control" id="title"
                                                                placeholder="Başlık"/>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="content">İçerik</label>
                                                         <input type="text" name="content" class="form-control"
+                                                               value="{{$haber->content}}"
                                                                id="content"
                                                                placeholder="İçerik"/>
                                                     </div>
@@ -141,12 +145,6 @@
                                     <!-- Content / End -->
                                     <!-- icerik -->
                                 </div><!-- Sidebar -->
-                                <div class="container-fluid d-flex">
-                                    <div class="ml-auto">
-                                        {{ $haberler->links() }}`
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
