@@ -326,7 +326,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="footer-copyright">
-                                    <a href="../../istanbul.html">Pasliga</a> 2024 &nbsp; | &nbsp; Pasliga TOPMOND
+                                    <a href="../../istanbul.html">Pasliga</a> 2024 &nbsp; | &nbsp; Ulusal Lig TOPMOND
                                     EVENTS iştirakidir. Tüm Hakları Saklıdır.
                                 </div>
                             </div>

@@ -12,7 +12,7 @@
                                                           src="assets/images/soccer/logo.png"
                                                           srcset="/assets/images/soccer/logo.png 2x">
                                     <div class="footer-logo__heading">
-                                        <h5 class="footer-logo__txt">Pasliga</h5><span class="footer-logo__tagline">Halı Saha Ligi</span>
+                                        <h5 class="footer-logo__txt">Ulusal Lig</h5><span class="footer-logo__tagline">Halı Saha Ligi</span>
                                     </div>
                                 </a>
                             </div><!-- Footer Logo / End --><!-- Widget: Contact Info -->
@@ -47,7 +47,7 @@
                             <div class="widget widget--footer widget-popular-posts">
                                 <h4 class="widget__title">Hakkımızda</h4>
                                 <div class="widget__content">
-                                    Pasliga , futbolu erişilebilir ve daha çekici hale getiren güçlü bir platformdur.
+                                    Ulusal Lig , futbolu erişilebilir ve daha çekici hale getiren güçlü bir platformdur.
                                     Her gün gerçekleşen maçlarda seçtiğiniz bir saha veya rakiple size profesyonel
                                     atmosferde maç heyecanı yaşamanızı sağlar. Maçların Full Hd özetleri , golleri ,
                                     fotoğrafları , istatistikleri ve maç sonu basın toplantıları ve canlı skor özelliği
@@ -111,7 +111,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="footer-copyright">
-                            <a href="{{route('izmir.index')}}">Pasliga</a> 2024 &nbsp; | &nbsp; Pasliga TOPMOND EVENTS iştirakidir.
+                            <a href="{{route('izmir.index')}}">Ulusal Lig</a> 2024 &nbsp; | &nbsp; Ulusal Lig TOPMOND EVENTS iştirakidir.
                             Tüm Hakları Saklıdır.
                         </div>
                     </div>
