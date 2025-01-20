@@ -96,7 +96,7 @@
                 <div class="header-logo">
                     <a href="{{route('izmir.index')}}"><img alt="Pasligaizmir" class="header-logo__img w-50 rounded-circle"
                                                             src="{{asset('assets/images/soccer/logo.png')}}"
-                                                            srcset="/assets/images/soccer/logo@2x.png 2x"></a>
+                                                            srcset="{{asset('assets/images/soccer/logo.png')}}"></a>
                 </div><!-- Header Logo / End --><!-- Main Navigation -->
 
                 <nav class="main-nav clearfix">
