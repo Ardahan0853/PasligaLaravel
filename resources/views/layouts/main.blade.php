@@ -448,7 +448,7 @@
     </style>
 </head>
 <body data-template="template-soccer">
-<div class="site-wrapper clearfix">
+<div class="site-wrapper clearfix arda-button">
     <!--<div class="site-overlay"></div>-->
 
 
@@ -479,12 +479,7 @@
 
 </body>
 <script>
-    document.querySelector('#header-mobile__toggle').addEventListener('click', function () {
-        document.querySelector('.clearfix').classList.toggle('site-wrapper--has-overlay');
-    });
-    document.querySelector('.main-nav__back').addEventListener('click', function () {
-        document.querySelector('.clearfix').classList.remove('site-wrapper--has-overlay');
-    });
+
 </script>
 <!-- Mirrored from pasliga.com/izmir by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 16 Dec 2024 10:39:21 GMT -->
 </html>

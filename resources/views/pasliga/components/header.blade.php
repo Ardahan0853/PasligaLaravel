@@ -114,9 +114,10 @@
                                 <a href="{{ route('izmir.uyeler') }}">Üyeler</a>
                             </li>
                         @endif
-                        <li class="{{ Request::is('izmir-ligi/*') ? 'active' : '' }}">
+                        <li class="{{ Request::is('izmir-ligi/*') ? 'active' : '' }} has-children">
                             <a href="#"><span class="stateHighlight">izmir</span> Ligi</a>
-                            <ul class="main-nav__sub">
+                            <span class="main-nav_toggle"></span>
+                            <ul class="main-nav__sub ">
                                 <li class="{{ Route::is('izmir-ligi.golKrali') ? 'active' : '' }}">
                                     <a href="{{ route('izmir-ligi.golKrali') }}">Gol Krallığı</a>
                                 </li>
@@ -168,14 +169,7 @@
                         {{--                        <li>--}}
                         {{--                            <a href="izmir/cezalar.html">Cezalar</a>--}}
                         {{--                        </li>--}}
-                        <li class="nav-account__item login-mobile">
-                            <a href="{{ route('izmir.kayit') }}"
-                               class="{{ Route::is('izmir.kayit') ? ' text-success' : '' }}">Kayıt Ol</a>
-                        </li>
-                        <li class="nav-account__item login-mobile">
-                            <a href="{{route('login')}}"
-                               class="{{ Route::is('login') ? ' text-success' : '' }}">Giriş Yap</a>
-                        </li>
+                        
 
                     </ul>
                 </nav>

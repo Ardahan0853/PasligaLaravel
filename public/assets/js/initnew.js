@@ -22,7 +22,7 @@
 	/* ----------------------------------------------------------- */
 	var $template_var = $('body').data('template');
 	var $color_primary = '#ffdc11';
-
+	var $main_nav     = $('.main-nav');
 	var $circular_bar = $('.circular__bar');
 	var $gmap         = $('.gm-map');
 	var $mp_single    = $('.mp_single-img');
@@ -126,7 +126,7 @@
 				var $info_nav_li = $('.info-block--header > li');
 				var $info_nav_li_onclick = $('.js-info-block__item--onclick');
 				var $wrapper     = $('.site-wrapper');
-
+				var $nav_list    = $('.main-nav__list');
 				var $nav_list_li = $('.main-nav__list > li');
 				var $toggle_btn  = $('#header-mobile__toggle');
 				var $pushy_btn   = $('.pushy-panel__toggle');
@@ -150,8 +150,7 @@
 
 				// Clone Header Logo to Mobile Menu
 
-				$nav_list.prepend($logo_mobile);
-				$logo_mobile.prepend('<span class="main-nav__back"></span>');
+
 
 				// Clone Header Info to Mobile Menu
 				var header_info1 = $('.info-block__item--contact-primary').clone();
@@ -179,10 +178,10 @@
 				$toggle_btn.on('click', function(){
 					$wrapper.toggleClass('site-wrapper--has-overlay');
 				});
-
-				$('.site-overlay, .main-nav__back').on('click', function(){
+                $('.main-nav__back').on('click', function(){
 					$wrapper.toggleClass('site-wrapper--has-overlay');
 				});
+
 
 				// Pushy Panel Toggle
 				$pushy_btn.on('click', function(e){
@@ -233,7 +232,7 @@
 			countdown.countdown({
 				date: count_time,
 				render: function(data) {
-					$(this.el).html("<div class='countdown-counter__item countdown-counter__item--days'>" + this.leadingZeros(data.days, 2) + " <span class='countdown-counter__label'>g?n</span></div><div class='countdown-counter__item countdown-counter__item--hours'>" + this.leadingZeros(data.hours, 2) + " <span class='countdown-counter__label'>saat</span></div><div class='countdown-counter__item countdown-counter__item--mins'>" + this.leadingZeros(data.min, 2) + " <span class='countdown-counter__label'>dakika</span></div><div class='countdown-counter__item countdown-counter__item--secs'>" + this.leadingZeros(data.sec, 2) + " <span class='countdown-counter__label'>saniye</span></div>");
+					$(this.el).html("<div class='countdown-counter__item countdown-counter__item--days'>" + this.leadingZeros(data.days, 2) + " <span class='countdown-counter__label'>g�n</span></div><div class='countdown-counter__item countdown-counter__item--hours'>" + this.leadingZeros(data.hours, 2) + " <span class='countdown-counter__label'>saat</span></div><div class='countdown-counter__item countdown-counter__item--mins'>" + this.leadingZeros(data.min, 2) + " <span class='countdown-counter__label'>dakika</span></div><div class='countdown-counter__item countdown-counter__item--secs'>" + this.leadingZeros(data.sec, 2) + " <span class='countdown-counter__label'>saniye</span></div>");
 				}
 			});
 		},
