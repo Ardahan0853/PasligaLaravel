@@ -169,7 +169,7 @@
                         {{--                        <li>--}}
                         {{--                            <a href="izmir/cezalar.html">Cezalar</a>--}}
                         {{--                        </li>--}}
-                        
+
 
                     </ul>
                 </nav>

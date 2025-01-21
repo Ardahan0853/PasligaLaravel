@@ -72,25 +72,30 @@
                                                 <td class="team-result__fouls">{{ $takim->takimPuan->p ?? 'N/A'}}</td>
 
                                                 <!-- Edit and Delete Buttons -->
-                                                <td>
-                                                    <!-- Edit Button -->
-                                                    <a href="{{ route('takim.edit', $takim->id) }}"
-                                                       class="btn btn-sm btn-primary">
-                                                        Edit
-                                                    </a>
 
-                                                    <!-- Delete Button -->
-                                                    <form action="{{ route('takim.destroy', $takim->id) }}"
-                                                          method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger"
-                                                                onclick="return confirm('Are you sure you want to delete this team?');">
-                                                            Delete
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                @if(Auth::check() && Auth::user()->role === 'admin')
+
+                                                    <td>
+                                                        <!-- Edit Button -->
+                                                        <a href="{{ route('takim.edit', $takim->id) }}"
+                                                           class="btn btn-sm btn-primary">
+                                                            Edit
+                                                        </a>
+
+                                                        <!-- Delete Button -->
+                                                        <form action="{{ route('takim.destroy', $takim->id) }}"
+                                                              method="POST" style="display: inline-block;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger"
+                                                                    onclick="return confirm('Are you sure you want to delete this team?');">
+                                                                Delete
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                @endif
                                             </tr>
+
                                         @endforeach
 
                                     @endif
